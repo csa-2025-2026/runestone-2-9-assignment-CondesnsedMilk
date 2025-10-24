@@ -8,11 +8,28 @@ public class Main
     System.out.print("Enter a word: ");
     String userInput = scan.next();
 
-    String currentLetter = "";
-    int mostLetterInt = 0;
+    String mostLetter  = "";
+    int pastLetterCount = 0;
     for(int i = 0; i < userInput.length(); i++)
     {
-      currentLetter = userInput.substring(i, i + 1);
+      String currentLetter = userInput.substring(i, i + 1);
+      int currentLetterCount = CountLetter(currentLetter, userInput);
+
+      if(pastLetterCount < currentLetterCount)
+      {
+        mostLetter = currentLetter;
+        pastLetterCount = currentLetterCount;
+      }
+    }
+
+    System.out.printf("The letter %s appears the most times with %d occurences.%n", mostLetter, pastLetterCount);
+
+  }
+
+  public static int CountLetter(String currentLetter, String userInput)
+  {
+      int mostLetterInt = 0;
+
       for(int j = 0; j < userInput.length(); j++)
       {
 
@@ -22,9 +39,7 @@ public class Main
         }
       }
 
-    }
-
-    System.out.printf("The letter %s appears the most times with %d occurences.%n", currentLetter, mostLetterInt);
+    return mostLetterInt;
 
   }
 
